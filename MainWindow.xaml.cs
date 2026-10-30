@@ -3,8 +3,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using FocusFlow.Engine;
-using Drawing = System.Drawing;
 using Forms = System.Windows.Forms;
+using MediaColor = System.Windows.Media.Color;
 
 namespace FocusFlow;
 
@@ -145,16 +145,16 @@ public partial class MainWindow : Window
 
         if (on)
         {
-            OrbCenter.Color = Color.FromRgb(0, 229, 255);
-            OrbEdge.Color = Color.FromRgb(0, 80, 110);
-            OrbGlow.Color = Color.FromRgb(0, 229, 255);
+            OrbCenter.Color = MediaColor.FromRgb(0, 229, 255);
+            OrbEdge.Color = MediaColor.FromRgb(0, 80, 110);
+            OrbGlow.Color = MediaColor.FromRgb(0, 229, 255);
             OrbGlow.Opacity = 0.7;
         }
         else
         {
-            OrbCenter.Color = Color.FromRgb(58, 69, 88);
-            OrbEdge.Color = Color.FromRgb(26, 34, 51);
-            OrbGlow.Color = Color.FromRgb(90, 106, 138);
+            OrbCenter.Color = MediaColor.FromRgb(58, 69, 88);
+            OrbEdge.Color = MediaColor.FromRgb(26, 34, 51);
+            OrbGlow.Color = MediaColor.FromRgb(90, 106, 138);
             OrbGlow.Opacity = 0.4;
         }
 
@@ -162,15 +162,15 @@ public partial class MainWindow : Window
         {
             ToggleBtn.Content = "Stop Focus Mode";
             ToggleBtn.Background = new LinearGradientBrush(
-                Color.FromRgb(255, 46, 151), Color.FromRgb(168, 85, 247), 0);
-            ToggleBtn.Foreground = Brushes.White;
+                MediaColor.FromRgb(255, 46, 151), MediaColor.FromRgb(168, 85, 247), 0);
+            ToggleBtn.Foreground = System.Windows.Media.Brushes.White;
         }
         else
         {
             ToggleBtn.Content = "Start Focus Mode";
             ToggleBtn.Background = new LinearGradientBrush(
-                Color.FromRgb(0, 229, 255), Color.FromRgb(0, 180, 216), 0);
-            ToggleBtn.Foreground = new SolidColorBrush(Color.FromRgb(4, 16, 24));
+                MediaColor.FromRgb(0, 229, 255), MediaColor.FromRgb(0, 180, 216), 0);
+            ToggleBtn.Foreground = new SolidColorBrush(MediaColor.FromRgb(4, 16, 24));
         }
 
         RefreshProfileSettings();
@@ -201,7 +201,7 @@ public partial class MainWindow : Window
 
     private void RemoveWhitelist_Click(object sender, RoutedEventArgs e)
     {
-        if (sender is not Button btn || btn.Tag is not string name) return;
+        if (sender is not System.Windows.Controls.Button btn || btn.Tag is not string name) return;
         _settings.Whitelist.RemoveAll(w => w.Equals(name, StringComparison.OrdinalIgnoreCase));
         _settings.Save();
         _engine.RefreshWhitelist();
@@ -223,7 +223,7 @@ public partial class MainWindow : Window
         {
             Text = "FocusFlow",
             Visible = false,
-            Icon = Drawing.SystemIcons.Application
+            Icon = System.Drawing.SystemIcons.Application
         };
 
         var menu = new Forms.ContextMenuStrip();
