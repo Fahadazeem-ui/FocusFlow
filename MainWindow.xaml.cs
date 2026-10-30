@@ -5,6 +5,7 @@ using System.Windows.Media;
 using FocusFlow.Engine;
 using Forms = System.Windows.Forms;
 using MediaColor = System.Windows.Media.Color;
+using MediaBrush = System.Windows.Media.Brush;
 
 namespace FocusFlow;
 
@@ -60,7 +61,7 @@ public partial class MainWindow : Window
         ProfilePanel.Children.Clear();
         foreach (var p in _settings.Profiles)
         {
-            var rb = new RadioButton
+            var rb = new System.Windows.Controls.RadioButton
             {
                 Content = p.Name,
                 Style = (Style)FindResource("ProfileChip"),
@@ -91,26 +92,26 @@ public partial class MainWindow : Window
         var p = _engine.Profile;
         EcoQosValue.Text = p.EcoQos ? "ON" : "OFF";
         EcoQosValue.Foreground = p.EcoQos
-            ? (Brush)FindResource("Green")
-            : (Brush)FindResource("TextMuted");
+            ? (MediaBrush)FindResource("Green")
+            : (MediaBrush)FindResource("TextMuted");
 
         if (p.NetKbps > 0)
         {
             NetValue.Text = p.NetKbps >= 1024
                 ? $"{p.NetKbps / 1024.0:0.#} Mbps"
                 : $"{p.NetKbps} Kbps";
-            NetValue.Foreground = (Brush)FindResource("Cyan");
+            NetValue.Foreground = (MediaBrush)FindResource("Cyan");
         }
         else
         {
             NetValue.Text = "OFF";
-            NetValue.Foreground = (Brush)FindResource("TextMuted");
+            NetValue.Foreground = (MediaBrush)FindResource("TextMuted");
         }
 
         RamValue.Text = p.TrimRam ? "ON" : "OFF";
         RamValue.Foreground = p.TrimRam
-            ? (Brush)FindResource("Magenta")
-            : (Brush)FindResource("TextMuted");
+            ? (MediaBrush)FindResource("Magenta")
+            : (MediaBrush)FindResource("TextMuted");
     }
 
     private void Refresh()
@@ -118,8 +119,8 @@ public partial class MainWindow : Window
         bool on = _engine.IsRunning;
         StatusLabel.Text = on ? "Focus Mode ON" : "Focus Mode OFF";
         StatusLabel.Foreground = on
-            ? (Brush)FindResource("Cyan")
-            : (Brush)FindResource("TextPrimary");
+            ? (MediaBrush)FindResource("Cyan")
+            : (MediaBrush)FindResource("TextPrimary");
 
         FocusedAppText.Text = on
             ? $"Focused:  {_engine.ForegroundName}"
