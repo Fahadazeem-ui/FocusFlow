@@ -1,5 +1,5 @@
 #define AppName "FocusFlow"
-#define AppVersion "0.3.0"
+#define AppVersion "0.3.1"
 
 [Setup]
 AppId={{B7A1D9F2-4C3E-4E8A-9F11-5D2C7A6E1F40}
@@ -33,8 +33,9 @@ Name: "{group}\{#AppName}"; Filename: "{app}\FocusFlow.exe"
 Name: "{autodesktop}\{#AppName}"; Filename: "{app}\FocusFlow.exe"; Tasks: desktopicon
 Name: "{userstartup}\{#AppName}"; Filename: "{app}\FocusFlow.exe"; Tasks: startup
 
+; shellexec = ShellExecute so Windows honors requireAdministrator (UAC) — fixes CreateProcess error 740
 [Run]
-Filename: "{app}\FocusFlow.exe"; Description: "Launch {#AppName}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\FocusFlow.exe"; Description: "Launch {#AppName}"; Flags: nowait postinstall skipifsilent shellexec
 
 [UninstallRun]
 Filename: "{sys}\taskkill.exe"; Parameters: "/F /IM FocusFlow.exe"; Flags: runhidden; RunOnceId: "KillApp"

@@ -8,7 +8,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>FocusFlow</AssemblyName>
     <RootNamespace>FocusFlow</RootNamespace>
-    <Version>0.3.0</Version>
+    <Version>0.3.1</Version>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- Ensure admin manifest is embedded in single-file publish -->
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
   </PropertyGroup>
 </Project>
